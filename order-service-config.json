@@ -1,0 +1,16 @@
+{
+    "systemName": "CPAPP_S4HANA_CLOUD",
+    "communicationArrangement": {
+        "communicationArrangementName": "CPAPP_COM_0109",
+        "scenarioId": "SAP_COM_0109",
+        "inboundAuthentication": "BasicAuthentication",
+        "outboundAuthentication": "BasicAuthentication",
+        "communicationSystem": {
+            "communicationSystemHostname": "default.com",
+            "outboundCommunicationUser": {
+                "username": "DefaultUser",
+                "password": "DefaultPassword"
+            }
+        }
+    }
+}

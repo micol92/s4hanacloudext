@@ -1,0 +1,31 @@
+@host = btp-kr-pockr-dev-testcap01-srv.cfapps.ap12.hana.ondemand.com
+@protocol = https
+
+###
+POST {{protocol}}://{{host}}/rest/order-post/Create_Order
+Content-Type: application/json
+
+{
+    "Order": 
+        {
+        "SalesOrderType": "OR",
+        "SalesOrganization": "1710",
+        "DistributionChannel": "10",
+        "OrganizationDivision": "00",
+        "SoldToParty": "CUST1",
+        "PurchaseOrderByCustomer": "CAP Application-Mujeeb",
+        "CustomerPaymentTerms": "",
+        "to_Partner": [
+            {
+                "PartnerFunction": "SP",
+                "Customer": "1000187"
+            }
+        ],
+        "to_Item": [
+            {
+                "Material": "LXF001",
+                "RequestedQuantity": "10"
+            }
+        ]
+        }
+}
