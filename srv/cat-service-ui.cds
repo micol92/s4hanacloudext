@@ -1,4 +1,4 @@
-using RiskService from '../srv/cat-service';
+using RiskService from './cat-service';
 
 annotate RiskService.Risks with {
 	title       @title: 'Title';
@@ -6,6 +6,11 @@ annotate RiskService.Risks with {
 	descr       @title: 'Description';
 	miti        @title: 'Mitigation';
 	impact      @title: 'Impact';
+    supplier    @(
+        title: 'Supplier',
+        Common.Text: supplier.fullName,
+        Common.TextArrangement: #TextOnly
+    )	
 }
 
 annotate RiskService.Mitigations with {
@@ -46,7 +51,7 @@ annotate RiskService.Risks with @(
 			{
 				Value: impact,
 				Criticality: criticality
-			}
+			}			
 		],
 		Facets: [
 			{$Type: 'UI.ReferenceFacet', Label: 'Main', Target: '@UI.FieldGroup#Main'}
@@ -54,6 +59,7 @@ annotate RiskService.Risks with @(
 		FieldGroup#Main: {
 			Data: [
 				{Value: miti_ID},
+				{Value: title},
 				{
 					Value: prio,
 					Criticality: criticality
@@ -61,7 +67,9 @@ annotate RiskService.Risks with @(
 				{
 					Value: impact,
 					Criticality: criticality
-				}
+				},
+	            {Value: supplier_ID},
+    	        {Value: supplier.isBlocked},
 			]
 		}
 	},
@@ -90,3 +98,20 @@ annotate RiskService.Risks with {
 		}
 	);
 }
+
+annotate RiskService.Suppliers with {
+    isBlocked   @title: 'Supplier Blocked';
+}
+
+// Annotations for value help
+
+annotate RiskService.Suppliers with {
+    ID          @(
+        title: 'ID',
+        Common.Text: fullName
+    );
+    fullName    @title: 'Name';
+}
+
+annotate RiskService.Suppliers with @Capabilities.SearchRestrictions.Searchable : false;
+

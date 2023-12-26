@@ -27,26 +27,46 @@ modules:
   - name: TestCAP01-db
   parameters:
     buildpack: nodejs_buildpack
-
+- name: TestCAP01-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: TestCAP01-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - risks.zip
+      name: risks
+      target-path: resources/
+- name: risks
+  type: html5
+  path: app/risks
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 - name: testcap01-approuter
   type: approuter.nodejs
-  path: app/
+  path: testcap01-approuter
   requires:
   - name: TestCAP01_html_repo_runtime
-  - name: TestCAP01-uaa
-  - name: TestCAP01-destination
-  - name: TestCAP01-db
-  - name: srv-api
-    group: destinations
-    properties:
-      forwardAuthToken: true
-      strictSSL: true
-      name: srv-api
-      url: '~{srv-url}'
+  - name: uaa_TestCAP01
   parameters:
-    disk-quota: 1024M
-    memory: 1024M
-
+    disk-quota: 256M
+    memory: 256M
+- name: TestCAP01_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: TestCAP01_html_repo_host
+    parameters:
+      content-target: true
 resources:
 - name: TestCAP01-db
   type: com.sap.xs.hdi-container
