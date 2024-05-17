@@ -28,3 +28,11 @@ using {  API_BUSINESS_PARTNER_0001 as bupa } from '../srv/external/API_BUSINESS_
         BusinessPartnerFullName as fullName,
         BusinessPartnerIsBlocked as isBlocked,
 }
+
+using {  API_BUSINESS_PARTNER_0002 as bupa2 } from '../srv/external/API_BUSINESS_PARTNER_0002';
+
+    entity Suppliers2 as projection on bupa2.A_BusinessPartner {
+        key BusinessPartner as ID,
+        BusinessPartnerFullName as fullName,
+        BusinessPartnerIsBlocked as isBlocked,
+}

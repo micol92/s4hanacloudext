@@ -15,7 +15,10 @@ service RiskService  @(requires: 'any'){
 
     @readonly
     entity Suppliers as projection on my2.Suppliers;    
-    
+
+    @readonly
+    entity Suppliers2 as projection on my2.Suppliers2;    
+
     //@readonly
     //entity Suppliers @(restrict : [
     //          {

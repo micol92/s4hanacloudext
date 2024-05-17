@@ -6,10 +6,16 @@ const cds = require('@sap/cds');
 module.exports = cds.service.impl(async function() {
 
     const bupa = await cds.connect.to('API_BUSINESS_PARTNER_0001');
+    const bupa2 = await cds.connect.to('API_BUSINESS_PARTNER_0002');
 
     this.on('READ', 'Suppliers', async req => {
         return bupa.run(req.query);
     });
+
+    this.on('READ', 'Suppliers2', async req => {
+        return bupa2.run(req.query);
+    });
+
     // Risks?$expand=supplier
     this.on("READ", 'Risks', async (req, next) => {
         if (!req.query.SELECT.columns) return next();

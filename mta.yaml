@@ -12,6 +12,7 @@ modules:
   - name: TestCAP01-bupa
   - name: TestCAP01-uaa
   - name: TestCAP01-salesorder
+  - name: TestCAP01-connectivity  
   provides:
   - name: srv-api
     properties:
@@ -35,6 +36,7 @@ modules:
   - name: TestCAP01_html_repo_runtime
   - name: TestCAP01-uaa
   - name: TestCAP01-destination
+  - name: TestCAP01-connectivity  
   - name: TestCAP01-db
   - name: srv-api
     group: destinations
@@ -53,6 +55,8 @@ resources:
   parameters:
     service: hana
     service-plan: hdi-shared
+    config:
+      databased_id: 2ec0a886-207d-4c67-bde0-bbec20c27977
 - name: TestCAP01-bupa
   type: org.cloudfoundry.managed-service
   parameters:
@@ -97,6 +101,14 @@ resources:
     service: destination
     service-name: TestCAP01-destination
     service-plan: lite
+# ------------------------------------------------------------
+- name: TestCAP01-connectivity
+# ------------------------------------------------------------
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-name: TestCAP01-conn-srv
+    service-plan: lite    
 - name: TestCAP01-uaa
   type: org.cloudfoundry.managed-service
   parameters:
