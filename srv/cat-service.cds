@@ -19,6 +19,9 @@ service RiskService  @(requires: 'any'){
     @readonly
     entity Suppliers2 as projection on my2.Suppliers2;    
 
+    @readonly
+    entity ExtSvrBooks as projection on my2.Books;
+
     //@readonly
     //entity Suppliers @(restrict : [
     //          {

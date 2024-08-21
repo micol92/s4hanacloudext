@@ -36,3 +36,11 @@ using {  API_BUSINESS_PARTNER_0002 as bupa2 } from '../srv/external/API_BUSINESS
         BusinessPartnerFullName as fullName,
         BusinessPartnerIsBlocked as isBlocked,
 }
+
+using {  capextsvr as capext } from '../srv/external/capextsvr';
+
+    entity Books as projection on capext.Books {
+        key ID as ID,
+        title as fullName,
+        stock as isBlocked,
+}

@@ -7,6 +7,11 @@ module.exports = cds.service.impl(async function() {
 
     const bupa = await cds.connect.to('API_BUSINESS_PARTNER_0001');
     const bupa2 = await cds.connect.to('API_BUSINESS_PARTNER_0002');
+    const capextsvr = await cds.connect.to('capextsvr');
+
+    this.on('READ', 'ExtSvrBooks', async req => {
+        return capextsvr.run(req.query);
+    });
 
     this.on('READ', 'Suppliers', async req => {
         return bupa.run(req.query);
