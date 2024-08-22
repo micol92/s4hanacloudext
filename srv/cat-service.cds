@@ -7,7 +7,7 @@ service CatalogService {
 using { sap.ui.riskmanagement as my2 } from '../db/schema';
 
 @path: 'service/risk'
-service RiskService  @(requires: 'any'){
+service RiskService  @(requires: 'authenticated-user'){
   entity Risks as projection on my2.Risks;
     annotate Risks with @odata.draft.enabled;
   entity Mitigations as projection on my2.Mitigations;
